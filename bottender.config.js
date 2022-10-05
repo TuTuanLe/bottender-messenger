@@ -30,6 +30,35 @@ module.exports = {
       appId: process.env.MESSENGER_APP_ID,
       appSecret: process.env.MESSENGER_APP_SECRET,
       verifyToken: process.env.MESSENGER_VERIFY_TOKEN,
-    }
+      profile: {
+        getStarted: {
+          payload: 'GET_STARTED',
+        },
+        persistentMenu: [
+          {
+            locale: 'default',
+            composerInputDisabled: false,
+            callToActions: [
+              {
+                type: 'postback',
+                title: 'Talking to the moon',
+                payload: 'TALKING_TO_THE_MOON',
+              },
+              {
+                type: 'postback',
+                title: 'Outfit suggestions',
+                payload: 'CURATION',
+              },
+              {
+                type: 'web_url',
+                title: 'Go to Postman',
+                url: 'https://postman-frontend.vercel.app/',
+                webviewHeightRatio: 'full',
+              },
+            ],
+          },
+        ],
+      },
+    },
   },
 };
