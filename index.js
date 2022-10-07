@@ -30,6 +30,20 @@ module.exports = async function App() {
 
 /* Note: You need to implement those functions */
 async function HandleMessage(context) {
+  if (context.event.isText === 'hello') {
+    await context.sendMediaTemplate([
+      {
+        mediaType: 'image',
+        attachmentId: '1854626884821032',
+        buttons: [
+          {
+            type: 'btn_hello',
+            title: 'hello ',
+          },
+        ],
+      },
+    ]);
+  }
   if (context.event.isText) {
     // await context.sendText('Hi!', {
     //   quickReplies: [
@@ -38,6 +52,7 @@ async function HandleMessage(context) {
     //     },
     //   ],
     // });
+
     await context.sendText(`received the text message: ${context.event.text}`);
     // await context.sendButtonTemplate('What do you want to do next?', [
     //   {
@@ -117,8 +132,8 @@ async function HandleOptin(context) {}
 async function HandlePolicyEnforcement(context) {}
 async function HandlePostback(context) {
   // await context.sendText(`received the postback: ${context.event.payload}`);
-
-  if (context.event.payload === 'TALKING_TO_THE_MOON') {
+  if (context.event.payload === 'CARE_HELP') {
+    await context.sendText('thank for you choose the template !!');
     await context.sendButtonTemplate('What do you want to do next?', [
       {
         type: 'web_url',
@@ -133,6 +148,56 @@ async function HandlePostback(context) {
     ]);
   } else if (context.event.payload === 'USER_DEFINED_PAYLOAD') {
     await context.sendText('why you chat from me ??');
+    await context.sendReceiptTemplate({
+      recipientName: 'Stephane Crozatier',
+      orderNumber: '12345678902',
+      currency: 'USD',
+      paymentMethod: 'Visa 2345',
+      orderUrl: 'http://petersapparel.parseapp.com/order?order_id=123456',
+      timestamp: '1428444852',
+      elements: [
+        {
+          title: 'Classic White T-Shirt',
+          subtitle: '100% Soft and Luxurious Cotton',
+          quantity: 2,
+          price: 50,
+          currency: 'USD',
+          imageUrl: 'http://petersapparel.parseapp.com/img/whiteshirt.png',
+        },
+        {
+          title: 'Classic Gray T-Shirt',
+          subtitle: '100% Soft and Luxurious Cotton',
+          quantity: 1,
+          price: 25,
+          currency: 'USD',
+          imageUrl: 'http://petersapparel.parseapp.com/img/grayshirt.png',
+        },
+      ],
+      address: {
+        street1: '1 Hacker Way',
+        street2: '',
+        city: 'Menlo Park',
+        postalCode: '94025',
+        state: 'CA',
+        country: 'US',
+      },
+      summary: {
+        subtotal: 75.0,
+        shippingCost: 4.95,
+        totalTax: 6.19,
+        totalCost: 56.14,
+      },
+      adjustments: [
+        {
+          name: 'New Customer Discount',
+          amount: 20,
+        },
+        {
+          name: '$10 Off Coupon',
+          amount: 10,
+        },
+      ],
+    });
   }
 
   await context.sendMediaTemplate([

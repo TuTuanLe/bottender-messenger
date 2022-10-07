@@ -42,7 +42,7 @@ module.exports = {
               {
                 type: 'postback',
                 title: 'Talking to the moon',
-                payload: 'TALKING_TO_THE_MOON',
+                payload: 'CARE_HELP',
               },
               {
                 type: 'postback',
