@@ -1,8 +1,27 @@
 import { Action, MessengerContext, Messenger } from 'bottender';
 import { router, messenger } from 'bottender/router';
 
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+async function main() {
+    const users = await prisma.user.findMany();
+    console.log(users);
+}
+
+main()
+    .then(async () => {
+        await prisma.$disconnect();
+    })
+    .catch(async (e) => {
+        console.error(e);
+        await prisma.$disconnect();
+        process.exit(1);
+    });
+
 export default async function App(contextT: MessengerContext): Promise<Action<MessengerContext> | void> {
     /* Note: You need to implement those functions */
+
     async function HandleMessage(context: MessengerContext) {
         console.log(context.event.isText);
 
