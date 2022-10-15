@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@prisma/client": "^4.4.0",
-    "bottender": "1.5.5"
+    "bottender": "1.5.5",
+    "nanoid": "^4.0.0"
   },
   "devDependencies": {
     "@types/jest": "^29.1.2",

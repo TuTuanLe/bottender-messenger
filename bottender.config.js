@@ -1,6 +1,7 @@
 module.exports = {
     session: {
         driver: 'memory',
+
         stores: {
             memory: {
                 maxSize: 500,
@@ -20,7 +21,11 @@ module.exports = {
             },
         },
     },
-    initialState: {},
+    initialState: {
+        status: 'START',
+        codeId: '',
+        timeRemaining: 10,
+    },
     channels: {
         messenger: {
             enabled: true,
